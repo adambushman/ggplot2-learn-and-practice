@@ -21,5 +21,6 @@ ggplot(data, aes(sales, products)) +
   ggtitle("Sales and Traffic Differences by Family", "A Comparison of May and June") +
   labs(size = "Sales", colour = "Month") +
   scale_size_continuous(labels = label_number(suffix = "K", scale = 1e-3)) +
+  ylab("Products") +
   xlab("Sales") +
   theme_minimal()
