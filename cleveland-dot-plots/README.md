@@ -2,7 +2,7 @@
 
 I recently had a visualization challenge at work to compare precisely two values for a good number of items. I had visualization via Twitter that used horizontal bars and circles to compare the values with the items of interest descending vertically. After loads of research, I discovered this chart was called a "Cleveland Dot Plot."
 
-![Example Cleveland Dot Plot](./cleveland-dot-plots/example_cleveland-dot-plots.jpeg)
+![Example Cleveland Dot Plot](./example_cleveland-dot-plots.jpeg)
 
 ## Description
 
