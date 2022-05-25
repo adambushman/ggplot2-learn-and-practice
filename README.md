@@ -1,3 +1,5 @@
+![ggplot2 Banner](./proj_header_005.jpg)
+
 # ggplot2 Learn and Practice
 
 A series of R files for learning and practicing visualization techniques using {ggplot2} package and its other extensions
