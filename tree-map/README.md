@@ -16,6 +16,7 @@ which is a massive help as the "whole" has many "parts" and "sub-parts".
 Review the files in this sub-folder for examples of basic to complex Tree Maps.
 
 ## Resources I Used to Learn & Practice
+[{treemapify} Documentation](https://wilkox.org/treemapify/reference/geom_treemap_subgroup_text.html)
 
 [June Cho - Best Approaches to Treemap in R](https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/)
 
