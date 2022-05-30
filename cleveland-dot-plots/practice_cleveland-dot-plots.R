@@ -14,9 +14,42 @@ data <- data.frame(
   sales = round(rnorm(8, 50000, 7500), 2)
 )
 
+pal <- c('#FF8600', '#27187E')
+
+
+# Basic Cleveland Dot Plot
+
+ggplot(data, aes(sales, products)) +
+  geom_line(aes(group = products)) +
+  geom_point()
+
+
+# Adding color and size components
+
+ggplot(data, aes(sales, products)) +
+  geom_line(aes(group = products)) +
+  geom_point(aes(color = month, size = traffic))
+
+
+# Using custom colors, adding labels, and using new theme
+
 ggplot(data, aes(sales, products)) +
   geom_line(aes(group = products)) +
   geom_point(aes(color = month, size = traffic)) +
+  scale_color_manual(values = pal) +
+  ggtitle("Sales and Traffic Differences by Family", "A Comparison of May and June") +
+  labs(colour = "Month", size = "Traffic") +
+  ylab("Products") +
+  xlab("Sales") +
+  theme_minimal()
+
+
+# Formatting numbers of legend and x-axis
+
+ggplot(data, aes(sales, products)) +
+  geom_line(aes(group = products)) +
+  geom_point(aes(color = month, size = traffic)) +
+  scale_color_manual(values = pal) +
   ggtitle("Sales and Traffic Differences by Family", "A Comparison of May and June") +
   labs(size = "Traffic", colour = "Month") +
   scale_size_continuous(labels = label_number(suffix = "M", scale = 1e-6)) +
