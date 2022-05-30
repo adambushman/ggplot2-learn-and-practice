@@ -1,8 +1,8 @@
-####################################
-# Tree Map                         #
-# Using {ggplot2} and {treemapify} #
-# Adam Bushman                     #
-####################################
+#########################
+# Dot Distribution Plot #
+# Using {ggplot2}       #
+# Adam Bushman          #
+#########################
 
 
 library('ggplot2')
