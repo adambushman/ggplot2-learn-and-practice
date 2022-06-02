@@ -20,7 +20,7 @@ Review the files in this sub-folder for examples of basic theme adjustments to a
 
 ## Resources I Used to Learn & Practice
 
-[TidyVerse Themes]([https://ggplot2.tidyverse.org/reference/geom_jitter.html](https://ggplot2.tidyverse.org/reference/theme.html))
+[TidyVerse Themes]([https://ggplot2.tidyverse.org/reference/geom_jitter.html](https://ggplot2.tidyverse.org/reference/theme.html)
 
 [Data Camp | Intro to Themes](https://www.youtube.com/watch?v=0D0HKmt8g4M)
 
