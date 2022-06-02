@@ -10,6 +10,9 @@ library('ggplot2')
 library('treemapify')
 library('dplyr')
 
+
+# Data Setup
+
 data = data.frame (
   item = c(rep('TV', 6), rep('Sound Bar', 6)),
   location = rep(c('Amazon', 'Walmart', 'Target'), 4),
