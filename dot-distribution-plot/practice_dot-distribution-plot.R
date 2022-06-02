@@ -8,6 +8,9 @@
 library('ggplot2')
 library('dplyr')
 
+
+# Data Setup
+
 data = data.frame(
   opponent = rep(c(rep("DEN", 7), rep("MEM", 5), rep("LAC", 6), rep("DAL", 6)), 2), 
   type = c(rep("Opponent",24), rep("Team", 24)), 
