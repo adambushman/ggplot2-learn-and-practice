@@ -1,8 +1,8 @@
-####################################
-# Tree Map                         #
-# Using {ggplot2} and {treemapify} #
-# Adam Bushman                     #
-####################################
+######################
+# {ggplot2} Themes   #
+# Using {ggplot2}    #
+# Adam Bushman       #
+######################
 
 library('dplyr')
 library('ggplot2')
