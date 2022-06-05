@@ -6,6 +6,7 @@
 ##################################
 
 library('usmap')
+library('ggmap')
 library('ggplot2')
 library('dplyr')
 library('ggrepel')
@@ -16,7 +17,7 @@ library('ggrepel')
 data = read.csv('nba-expansion-data.csv')
 
 # Register using your own key (below is fake)
-# register_google(key = 'AizaSyCFd4FGbI7axkMV4iS63rl-SvJGfT4m3F3')
+register_google(key = 'aIzaSyCFd4FGbI7axkMV4iS63rl-SvJGfT4m3F4')
 
 coords <- 
   data %>% 
@@ -30,12 +31,14 @@ expansionDF <-
   select(lon, lat, franchise, location, division, type, author) %>%
   usmap_transform(.)
 
+# Filter by Author
+auth = "@adam_bushman"
 
 plot_usmap(regions = c("states"), exclude = c("Alaska", "Hawaii")) +
-  geom_point(data = expansionDF %>% filter(author == "@adam_bushman"), 
+  geom_point(data = expansionDF %>% filter(author == auth), 
              aes(x = lon.1, y = lat.1, color = division), 
              size = 3) +
-  geom_label_repel(data = expansionDF %>% filter(author == "@adam_bushman"),
+  geom_label_repel(data = expansionDF %>% filter(author == auth),
                   aes(x = lon.1, y = lat.1, 
                       label = ifelse(franchise == '', location, franchise), 
                       color = division),
@@ -45,6 +48,9 @@ plot_usmap(regions = c("states"), exclude = c("Alaska", "Hawaii")) +
                   box.padding = 0.5,
                   fill = "white", 
                   show.legend=FALSE) +
+  annotate("text", x = -2000000, y = -2000000, 
+           label = paste("Expansion Author\n", auth, sep = ''), 
+           hjust = 0) +
   labs(title = "Prospective NBA Expansion", 
        subtitle = "32 Teams | 8 Divisions", 
        color = "Divisions") +
