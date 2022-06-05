@@ -20,8 +20,10 @@ Review the files in this sub-folder for examples of basic theme adjustments to a
 
 ## Resources I Used to Learn & Practice
 
-[TidyVerse Themes]([https://ggplot2.tidyverse.org/reference/geom_jitter.html](https://ggplot2.tidyverse.org/reference/theme.html)
+[TidyVerse Themes](https://ggplot2.tidyverse.org/reference/theme.html)
 
 [Data Camp | Intro to Themes](https://www.youtube.com/watch?v=0D0HKmt8g4M)
 
 [R-pubs | Custom Themes](https://rpubs.com/mclaire19/ggplot2-custom-themes)
+
+[5 Steps to Creating Your Own ggplot Theme](https://towardsdatascience.com/5-steps-for-creating-your-own-ggplot-theme-656e79a96b9)
