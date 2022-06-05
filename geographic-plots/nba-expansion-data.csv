@@ -1,0 +1,98 @@
+type,author,franchise,location,division
+Current,,Minnesota Timberwolves,"Minneapolis, Minnesota",Northwest
+Current,,Portland Trailblazers,"Portland, Oregon",Northwest
+Current,,Utah Jazz,"Salt Lake City, Utah",Northwest
+Current,,Denver Nuggets,"Denver, Colorado",Northwest
+Current,,Oklahoma City Thunder,"Oklahoma City, Oklahoma",Northwest
+Current,,Golden State Warriors,"San Francisco, California",Pacific
+Current,,Sacramento Kings,"Sacramento, California",Pacific
+Current,,Phoenix Suns,"Phoenix, Arizona",Pacific
+Current,,Los Angeles Lakers,"Los Angeles, California",Pacific
+Current,,LA Clippers,"Los Angeles, California",Pacific
+Current,,Memphis Grizzlies,"Memphis, Tennessee",Southwest
+Current,,Houston Rockets,"Houston, Texas",Southwest
+Current,,Dallas Mavericks,"Dallas, Texas",Southwest
+Current,,San Antonio Spurs,"San Antonio, Texas",Southwest
+Current,,New Orleans Pelicans,"New Orleans, Louisiana",Southwest
+Current,,Atlanta Hawks,"Atlanta, Georgia",Southeast
+Current,,Orlando Magic,"Orlando, FLorida",Southeast
+Current,,Miami Heat,"Miami, Florida",Southeast
+Current,,Charlotte Hornets,"Charlotte, North Carolina",Southeast
+Current,,Washington Wizards,"District of Columbia, ",Southeast
+Current,,Milwaukee Bucks,"Milwaukee, Wisconsin",Central
+Current,,Chicago Bulls,"Chicago, Illinois",Central
+Current,,Indiana Pacers,"Indianapolis, Indiana",Central
+Current,,Detroit Pistons,"Detroit, Michigan",Central
+Current,,Cleveland Cavaliers,"Cleveland, Ohio",Central
+Current,,Toronto Raptors,"Toronto, Ontario",Atlantic
+Current,,Philadelphia 76ers,"Philadelphia, Pennsylvania",Atlantic
+Current,,New York Knicks,"Manhattan, New York",Atlantic
+Current,,Brooklyn Nets,"Brooklyn, New York",Atlantic
+Current,,Boston Celtics,"Boston, Massachusetts",Atlantic
+Expansion,@kirkmckee13,,"Seattle, Washington",Mountain West
+Expansion,@kirkmckee14,Portland Trailblazers,"Portland, Oregon",Mountain West
+Expansion,@kirkmckee15,Golden State Warriors,"San Francisco, California",Mountain West
+Expansion,@kirkmckee16,Sacramento Kings,"Sacramento, California",Mountain West
+Expansion,@kirkmckee17,,"Reno, Nevada",Mountain West
+Expansion,@kirkmckee18,Utah Jazz,"Salt Lake City, Utah",Mountain West
+Expansion,@kirkmckee19,,"San Diego, California",Baja
+Expansion,@kirkmckee20,Phoenix Suns,"Phoenix, Arizona",Baja
+Expansion,@kirkmckee22,Los Angeles Lakers,"Los Angeles, California",Baja
+Expansion,@kirkmckee23,Denver Nuggets,"Denver, Colorado",Baja
+Expansion,@kirkmckee24,,"Albuquerque, New Mexico",Baja
+Expansion,@kirkmckee25,Oklahoma City Thunder,"Oklahoma City, Oklahoma",Gulf
+Expansion,@kirkmckee26,Memphis Grizzlies,"Memphis, Tennessee",Gulf
+Expansion,@kirkmckee27,Houston Rockets,"Houston, Texas",Gulf
+Expansion,@kirkmckee28,Dallas Mavericks,"Dallas, Texas",Gulf
+Expansion,@kirkmckee29,San Antonio Spurs,"San Antonio, Texas",Gulf
+Expansion,@kirkmckee30,New Orleans Pelicans,"New Orleans, Louisiana",Gulf
+Expansion,@kirkmckee31,,"Nashville, Tennessee",South
+Expansion,@kirkmckee32,,"Birmingham, Alabama",South
+Expansion,@kirkmckee33,Atlanta Hawks,"Atlanta, Georgia",South
+Expansion,@kirkmckee34,Orlando Magic,"Orlando, FLorida",South
+Expansion,@kirkmckee35,Miami Heat,"Miami, Florida",South
+Expansion,@kirkmckee36,Charlotte Hornets,"Charlotte, North Carolina",South
+Expansion,@kirkmckee37,Minnesota Timberwolves,"Minneapolis, Minnesota",Great Lakes
+Expansion,@kirkmckee38,Milwaukee Bucks,"Milwaukee, Wisconsin",Great Lakes
+Expansion,@kirkmckee39,Chicago Bulls,"Chicago, Illinois",Great Lakes
+Expansion,@kirkmckee40,Indiana Pacers,"Indianapolis, Indiana",Great Lakes
+Expansion,@kirkmckee41,Detroit Pistons,"Detroit, Michigan",Great Lakes
+Expansion,@kirkmckee42,Cleveland Cavaliers,"Cleveland, Ohio",Great Lakes
+Expansion,@kirkmckee43,Toronto Raptors,"Toronto, Ontario",Atlantic
+Expansion,@kirkmckee44,Washington Wizards,"District of Columbia, ",Atlantic
+Expansion,@kirkmckee45,Philadelphia 76ers,"Philadelphia, Pennsylvania",Atlantic
+Expansion,@kirkmckee46,New York Knicks,"Manhattan, New York",Atlantic
+Expansion,@kirkmckee47,Brooklyn Nets,"Brooklyn, New York",Atlantic
+Expansion,@kirkmckee48,Boston Celtics,"Boston, Massachusetts",Atlantic
+Expansion,@adam_bushman,,"Seattle, Washington",Pacific
+Expansion,@adam_bushman,Minnesota Timberwolves,"Minneapolis, Minnesota",Great Lakes
+Expansion,@adam_bushman,Portland Trailblazers,"Portland, Oregon",Pacific
+Expansion,@adam_bushman,Utah Jazz,"Salt Lake City, Utah",Midwest
+Expansion,@adam_bushman,Denver Nuggets,"Denver, Colorado",Midwest
+Expansion,@adam_bushman,Oklahoma City Thunder,"Oklahoma City, Oklahoma",Midwest
+Expansion,@adam_bushman,Golden State Warriors,"San Francisco, California",Pacific
+Expansion,@adam_bushman,Sacramento Kings,"Sacramento, California",Pacific
+Expansion,@adam_bushman,Phoenix Suns,"Phoenix, Arizona",Southwest
+Expansion,@adam_bushman,Los Angeles Lakers,"Los Angeles, California",Southwest
+Expansion,@adam_bushman,,"Las Vegas, Nevada",Southwest
+Expansion,@adam_bushman,LA Clippers,"Los Angeles, California",Southwest
+Expansion,@adam_bushman,Memphis Grizzlies,"Memphis, Tennessee",Midwest
+Expansion,@adam_bushman,Houston Rockets,"Houston, Texas",Gulf
+Expansion,@adam_bushman,Dallas Mavericks,"Dallas, Texas",Gulf
+Expansion,@adam_bushman,San Antonio Spurs,"San Antonio, Texas",Gulf
+Expansion,@adam_bushman,New Orleans Pelicans,"New Orleans, Louisiana",Gulf
+Expansion,@adam_bushman,Atlanta Hawks,"Atlanta, Georgia",Southeast
+Expansion,@adam_bushman,Orlando Magic,"Orlando, FLorida",Southeast
+Expansion,@adam_bushman,Miami Heat,"Miami, Florida",Southeast
+Expansion,@adam_bushman,Charlotte Hornets,"Charlotte, North Carolina",Southeast
+Expansion,@adam_bushman,Washington Wizards,"District of Columbia, ",Central
+Expansion,@adam_bushman,Milwaukee Bucks,"Milwaukee, Wisconsin",Great Lakes
+Expansion,@adam_bushman,Chicago Bulls,"Chicago, Illinois",Great Lakes
+Expansion,@adam_bushman,Indiana Pacers,"Indianapolis, Indiana",Central
+Expansion,@adam_bushman,Detroit Pistons,"Detroit, Michigan",Great Lakes
+Expansion,@adam_bushman,Cleveland Cavaliers,"Cleveland, Ohio",Central
+Expansion,@adam_bushman,Toronto Raptors,"Toronto, Ontario",Atlantic
+Expansion,@adam_bushman,Philadelphia 76ers,"Philadelphia, Pennsylvania",Central
+Expansion,@adam_bushman,New York Knicks,"Manhattan, New York",Atlantic
+Expansion,@adam_bushman,Brooklyn Nets,"Brooklyn, New York",Atlantic
+Expansion,@adam_bushman,Boston Celtics,"Boston, Massachusetts",Atlantic
