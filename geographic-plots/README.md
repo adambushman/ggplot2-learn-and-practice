@@ -21,8 +21,10 @@ Review the files in this sub-folder for examples of practicing with basic maps t
 
 ## Core Packages I Used to Learn & Practice
 
-{usmap} for constructing country, state, county borders for plotting
+{usmap} and {tigris} for constructing country, state, county borders for plotting
+
 {ggmap} for extracting longitude/latitude values for various locations
+
 {ggplot2} for additional layers and themes
 
 ## Additional Resources I Used to Learn & Practice
