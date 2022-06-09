@@ -6,12 +6,15 @@
 
 #install.packages('tidycensus')
 #install.packages('tigris')
+#devtools::install_github("yutannihilation/ggsflabel")
 library('tidycensus')
 library('tidyverse')
 library('tigris')
 library('sf')
+library('ggsflabel')
 library('stringr')
 library('scales')
+
 
 
 # Populate your API KEYS (the below are fake)
@@ -26,7 +29,7 @@ view(v1)
 # Data setup
 countyDF <- get_decennial(geography = "county",
                        variables = "H1_001N", 
-                       state = "North Carolina", 
+                       state = "South Carolina", 
                        year = 2020, 
                        geometry = TRUE)
 
@@ -66,10 +69,10 @@ ggplot(data = countyDF, aes(fill = value)) +
 
 # Plotting city points and labels
 
-cities = tigris::places("North Carolina", cb = TRUE) %>%
-  filter(NAME %in% c('Bryson City', 'Edenton', 'Blowing Rock', 'Seagrove', 'Manteo', 
-                     'Sylva', 'Hillsborough', 'Washington', 'Highlands', 'Pittsboro', 
-                     'Banner Elk', 'Mount Airy')) %>%
+cities = tigris::places("South Carolina", cb = TRUE) %>%
+  filter(NAME %in% c('York', 'Cope', 'Walhalla', 'Anderson', 'Abbeville', 'Landrum', 
+                     'Edisto Beach', 'Newberry', 'Hilton Head Island', 'Aiken', 
+                     'GeorgeTown', 'Beaufort')) %>%
   st_transform(.) %>%
   st_centroid(.)
 
@@ -83,10 +86,8 @@ ggplot() +
                                             bigmark = ",", 
                                             scale = 1e-3)) +
   geom_sf(data = cities, color = "black", size = 4) +
-  geom_sf_label(data = cities, aes(label = NAME), 
-                hjust = 0, 
-                vjust = 0) +
-  labs(title = 'North Carolina Population by County', 
+  geom_sf_label_repel(data = cities, aes(label = NAME)) +
+  labs(title = 'Sourth Carolina Population by County', 
        subtitle = 'Per US Decennial Census 2020', 
        fill = 'Population') +
   guides(fill = guide_colorbar(barheight = 15)) +
