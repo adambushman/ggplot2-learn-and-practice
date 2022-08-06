@@ -6,6 +6,19 @@
 
 library('dplyr')
 library('ggplot2')
+library('scales')
+library('forcats')
+library('camcorder')
+
+
+camcorder::gg_record(
+  dir = 'C:/Users/Adam Bushman/Pictures/_test', 
+  device = 'png', 
+  width = 12, 
+  height = 9, 
+  units = "cm", 
+  dpi = 300
+)
 
 
 # Data setup
@@ -77,16 +90,48 @@ data %>%
 
 
 # 100% bar chart
-data %>%
+p <- 
+  data %>%
   left_join(data %>%
               group_by(salesman) %>%
               summarise(total = sum(sales))) %>%
-  mutate(sales_adj = sales / total) %>%
+  mutate(sales_adj = sales / total, 
+         sales_lab = paste("$", round(sales/1000, 0), "K", sep="")) %>% 
+  group_by(salesman) %>%
+  arrange(salesman, fct_rev(month)) %>%
+  mutate(sales_pos = cumsum(sales_adj) - sales_adj + ifelse(sales_lab == "$0K", -0.03, 0.03)) %>%
   
-  ggplot(aes(sales_adj, salesman)) +
+  
+  ggplot(aes(sales_adj, salesman, label = sales_lab)) +
   geom_bar(aes(fill = month), stat = "identity") +
   labs(
     title = "Office Sales Share by Month per Salesmen", 
-    y = ""
+    y = "", 
+    x = "",
+    fill = ""
   ) +
   theme_minimal()
+
+p
+
+
+# Advanced, styled chart
+p +
+  geom_label(aes(x = sales_pos, fill = month), 
+             size = 2.5, show.legend = FALSE) +
+  labs(subtitle = "Percent of Sales for each Salesman by Month") +
+  scale_fill_manual(values = c("#8B8B98", "#E9AFA3", "#AEC5EB", "#F9DEC9")) +
+  scale_x_continuous(label = label_number(suffix = "%", scale = 1e2)) +
+  guides(fill = guide_legend(override.aes = list(size = 1))) +
+  theme(
+    plot.background = element_rect(fill = "#FFFCFA", color = NA), 
+    legend.position = "top", 
+    legend.justification = "left", 
+    legend.text = element_text(size = 7), 
+    plot.title = element_text(size = 12, face = "bold"), 
+    plot.subtitle = element_text(size = 9, face = "italic"), 
+    axis.text.y = element_text(face = "bold", size = 8)
+  )
+
+
+camcorder::gg_stop_recording()
