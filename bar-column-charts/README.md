@@ -1,4 +1,5 @@
 <img src="./example_bar-column-chart.png" width="60%" height="60%" alt="Example Bar-Column Charts"/>
+
 # Bar & Column Charts
 
 Bar & Column Charts are part of the foundational makeup of dataviz.
