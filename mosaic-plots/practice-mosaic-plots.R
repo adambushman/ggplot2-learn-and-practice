@@ -116,3 +116,18 @@ data_clean <-
   select(lab_s, category, tInventory, xmax_s, xmin_s, ymax_s, ymin_s, xlab, ylab, ylab_s)
 
 
+
+
+###
+# Basic Mosaic Plot
+###
+
+ggplot(
+  data_clean, 
+  aes(
+    xmax = xmax_s, xmin = xmin_s, 
+    ymax = ymax_s, ymin = ymin_s, 
+    fill = category,
+  )
+) +
+  geom_rect(color = "black", size = 0.75)
