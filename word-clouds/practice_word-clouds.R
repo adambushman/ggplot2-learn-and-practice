@@ -14,7 +14,7 @@ camcorder::gg_record(
   dir = 'C:/Users/Adam Bushman/Pictures/_test', 
   device = 'png', 
   width = 10, 
-  height = 10, 
+  height = 8, 
   units = 'cm', 
   dpi = 300
 )
@@ -81,4 +81,31 @@ basic_wc +
   )
 
 
+###
+# Intermediate word cloud with dynamic sizing
+###
+
+inter_wc <- 
+  ggplot(
+    data, 
+    aes(label = keyword, size = frequency)
+  ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+
+inter_wc
+
+# Additional styling
+
+inter_wc +
+  labs(
+    title = "An Intermediate Keyword Cloud", 
+    subtitle = "In {ggplot2} and {ggwordcloud}"
+  ) +
+  scale_size_area(max_size = 12) +
+  theme(
+    plot.background = element_rect(fill = "#D7DEDC", color = NA), 
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16), 
+    plot.subtitle = element_text(hjust = 0.5, face = "italic", size = 10)
+  )
 
