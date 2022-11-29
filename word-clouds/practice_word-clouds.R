@@ -53,4 +53,32 @@ set.seed(14)
 
 
 
+###
+# Basic word cloud / No dynamic sizing
+###
+
+basic_wc <- 
+  ggplot(
+    data, 
+    aes(label = keyword)
+  ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+
+basic_wc
+
+# Some additional styling
+
+basic_wc +
+  labs(
+    title = "A Basic Keyword Cloud", 
+    subtitle = "In {ggplot2} and {ggwordcloud}"
+  ) +
+  theme(
+    plot.background = element_rect(fill = "#D7DEDC", color = NA), 
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16), 
+    plot.subtitle = element_text(hjust = 0.5, face = "italic", size = 10)
+  )
+
+
 
