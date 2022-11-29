@@ -1,10 +1,14 @@
-<div style="display:flex">
-     <div style="flex:1;padding-right:10px;">
-          <img src="example_basic-mosaic" width="400"/>
-     </div>
-     <div style="flex:1;padding-left:10px;">
-          <img src="example_advanced-mosaic" width="400"/>
-     </div>
+<div id="image-table">
+    <table>
+	    <tr>
+            <td style="padding:10px">
+            	<img src="example_basic-mosaic.png" width="400"/>
+            </td>
+            <td style="padding:10px">
+            	<img src="example_advanced-mosaic.png" width="400"/>
+            </td>
+        </tr>
+    </table>
 </div>
 
 # Mosaic Plots
