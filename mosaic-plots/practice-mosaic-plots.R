@@ -130,7 +130,7 @@ p_basic <-
     fill = category,
   )
 ) +
-  geom_rect(color = "black", size = 0.75)
+  geom_rect(color = "black", size = 0.5)
 
 p_basic
 
@@ -162,6 +162,10 @@ p_advanced <-
     title = "Inventory Levels", 
     subtitle = "By Category & Region"
   ) +
+  annotate("segment", x = 0, xend = 0.310, y = 41000, yend = 41000, color = "#402926", 
+           arrow = arrow(ends = "both", angle = 90, length = unit(.1,"cm"))) +
+  annotate("text", x = 0, y = 42500, color = "#402926", hjust = 0, size = 2.5, 
+           label = "Region inventory proportion")
   guides(
     fill = guide_legend(title = "", override.aes = aes(label = ""))
   ) +
@@ -179,3 +183,4 @@ p_advanced <-
 
 
 p_advanced
+
