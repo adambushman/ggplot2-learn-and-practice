@@ -106,23 +106,23 @@ data_clean <-
     xmax_s = xmax / max(xmax, xmin), 
     xmin_s = xmin / max(xmax, xmin)
   ) %>%
-  group_by(regions) %>%
   mutate(
     ylab = ymax_s, 
     ylab_s = 0, 
     lab_s = ifelse(category == "Paper", regions, ""), 
-    xlab = ((xmax_s - xmin_s) / 2) + xmin_s
+    xlab = ((xmax_s - xmin_s) / 2) + xmin_s, 
   ) %>%
-  select(lab_s, category, tInventory, xmax_s, xmin_s, ymax_s, ymin_s, xlab, ylab, ylab_s)
+  select(lab_s, category, tInventory, xmax_s, xmin_s, ymax_s, ymin_s, xlab, ylab, ylab_s, fills)
 
 
 
 
 ###
-# Basic Mosaic Plot
+# Basic Mosaic Plot using geom_rect
 ###
 
-ggplot(
+p_basic <-
+  ggplot(
   data_clean, 
   aes(
     xmax = xmax_s, xmin = xmin_s, 
@@ -131,3 +131,51 @@ ggplot(
   )
 ) +
   geom_rect(color = "black", size = 0.75)
+
+p_basic
+
+
+###
+# Advanced Mosaic Plot
+###
+
+p_advanced <-
+  p_basic +
+  scale_fill_manual(values = c("#9E577C", "#B195A5")) +
+  geom_label(
+    aes(x = xlab, y = ylab, label = format(tInventory, big.mark = ",")), 
+    size = 2.5
+  ) +
+  ggrepel::geom_text_repel(
+    aes(x = xlab, y = ylab_s, label = lab_s), 
+    segment.color = NA, 
+    hjust = 1,
+    angle = 22.5, 
+    nudge_y = -500, 
+    size = 2.75
+  ) +
+  scale_y_continuous(
+    labels = scales::label_number(scale = 1e-3, big.mark = ",", suffix = "K"), 
+    limits = c(-5000, 42500)
+  ) +
+  labs(
+    title = "Inventory Levels", 
+    subtitle = "By Category & Region"
+  ) +
+  guides(
+    fill = guide_legend(title = "", override.aes = aes(label = ""))
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top", 
+    text = element_text(color = "#402926"), 
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16), 
+    plot.subtitle = element_text(hjust = 0.5, face = "italic", size = 10), 
+    plot.background = element_rect(fill = "#F8F2F4", color = NA), 
+    panel.grid = element_line(color = "#DFCECF"), 
+    axis.title = element_blank(), 
+    axis.text.x = element_blank()
+  )
+
+
+p_advanced
