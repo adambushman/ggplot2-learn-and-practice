@@ -159,4 +159,25 @@ adv_wc
 
 
 
+###
+# Faceting a Word Cloud
+###
 
+# New data setup
+
+data.new <-
+  data.frame(
+    type = c(rep("What I Own", nrow(data)), rep("What I Wear", nrow(data))), 
+    keyword = rep(data$keyword, 2), 
+    frequency = sample(data$frequency, nrow(data) * 2, replace = TRUE)
+  )
+
+# Word Cloud with Facet
+
+ggplot(
+  data.new, 
+  aes(label = keyword, size = frequency)
+) +
+  geom_text_wordcloud_area() +
+  facet_wrap(~type, ncol = 2) + 
+  theme_minimal()
