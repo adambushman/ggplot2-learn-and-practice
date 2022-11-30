@@ -109,3 +109,54 @@ inter_wc +
     plot.subtitle = element_text(hjust = 0.5, face = "italic", size = 10)
   )
 
+
+###
+# Advanced word cloud with styling elements
+###
+
+adv_wc <-
+  ggplot(
+    data, 
+    aes(label = keyword, size = frequency, color = frequency)
+  ) +
+  geom_text_wordcloud_area(shape = "square") +
+  theme_minimal()
+
+adv_wc
+
+# Adding color
+
+adv_wc +
+  scale_color_gradient(high = "purple", low = "lavender")
+
+adv_wc <-
+  ggplot(
+    data, 
+    aes(label = keyword, size = frequency, 
+        color = factor(sample.int(6, nrow(data), replace = TRUE)))
+  ) +
+  geom_text_wordcloud_area(shape = "square") +
+  theme_minimal()
+
+adv_wc  
+
+# Custom shape mask
+
+adv_wc <- 
+  ggplot(
+    data, 
+    aes(label = keyword, color = frequency)
+  ) +
+  geom_text_wordcloud_area(
+    mask = png::readPNG('custom-mask-shape.png'),
+    rm_outside = TRUE
+  ) +
+  scale_size_area(max_size = 5) +
+  scale_color_gradient(high = "red", low = "pink") +
+  theme_minimal()
+
+adv_wc
+
+
+
+
