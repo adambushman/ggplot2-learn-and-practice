@@ -203,3 +203,48 @@ ggplot(
 
 
 
+###
+# Color Tiers
+###
+
+data.binned <-
+  data %>%
+  mutate(bin = cut(frequency, breaks = 4))
+
+
+tiered <-
+  ggplot(
+    data.binned, 
+    aes(label = keyword, size = frequency, 
+        color = factor(bin))
+  ) +
+  geom_text_wordcloud_area() +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
+
+tiered
+
+# Tiered for facet comparison
+
+data.new.binned <- 
+  data.new %>%
+  mutate(bin = cut(frequency, breaks = 5))
+
+
+facet_tiered <-
+  ggplot(
+    data.new.binned, 
+    aes(label = keyword, size = frequency, 
+        color = factor(bin))
+  ) +
+  geom_text_wordcloud() +
+  facet_wrap(~type, ncol = 2) + 
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA), 
+    strip.background = element_rect(fill = "#FFFFFF", color = "black")
+  )
+
+facet_tiered
