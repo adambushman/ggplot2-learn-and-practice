@@ -63,7 +63,10 @@ basic_wc <-
     aes(label = keyword)
   ) +
   geom_text_wordcloud() +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
 
 basic_wc
 
@@ -91,7 +94,10 @@ inter_wc <-
     aes(label = keyword, size = frequency)
   ) +
   geom_text_wordcloud() +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
 
 inter_wc
 
@@ -120,7 +126,10 @@ adv_wc <-
     aes(label = keyword, size = frequency, color = frequency)
   ) +
   geom_text_wordcloud_area(shape = "square") +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
 
 adv_wc
 
@@ -136,7 +145,10 @@ adv_wc <-
         color = factor(sample.int(6, nrow(data), replace = TRUE)))
   ) +
   geom_text_wordcloud_area(shape = "square") +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
 
 adv_wc  
 
@@ -152,8 +164,11 @@ adv_wc <-
     rm_outside = TRUE
   ) +
   scale_size_area(max_size = 5) +
-  scale_color_gradient(high = "red", low = "pink") +
-  theme_minimal()
+  scale_color_gradient(high = "darkgreen", low = "beige") +
+  theme_minimal() + 
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA)
+  )
 
 adv_wc
 
@@ -180,4 +195,11 @@ ggplot(
 ) +
   geom_text_wordcloud_area() +
   facet_wrap(~type, ncol = 2) + 
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA), 
+    strip.background = element_rect(fill = "yellow", color = "black")
+  )
+
+
+
