@@ -4,8 +4,8 @@ library('dplyr')
 
 
 layout <- tilemakr::tile_layouts$`US States`
-layout[3,2] <- "ID"
-layout[4,11] <- "0"
+#layout[3,2] <- "ID"
+#layout[4,11] <- "0"
 
 
 
