@@ -4,9 +4,6 @@ library('dplyr')
 
 
 layout <- tilemakr::tile_layouts$`US States`
-layout[3,2] <- "ID"
-layout[4,11] <- "0"
-
 
 
 
@@ -71,23 +68,31 @@ data <- list(
 
 
 data <- do.call(rbind, lapply(data, as.data.frame))
+
+color_lookup <- list(
+  "Harris" = list (
+    "Safe" = "#0043BF", 
+    "Likely" = "#3D70CD", 
+    "Leaning" = "#7A9CDA", 
+    "Tilting" = "#B7C9E7"
+  ), 
+  "Trump" = list (
+    "Safe" = "#D31714", 
+    "Likely" = "#DC4F4C", 
+    "Leaning" = "#E48684", 
+    "Tilting" = "#ECBEBC"
+  )
+)
+
+get_col <- function(x, y) {
+  return(color_lookup[[x]][[y]])
+}
   
 data <- data |> 
   mutate(
-    fill = case_when(
-      candidate == "Trump" ~ case_when(
-        margin == "Safe" ~ "#FF0803", 
-        margin == "Likely" ~ "#FF4643", 
-        margin == "Leaning" ~ "#FF8785", 
-        margin == "Tilting" ~ "#FFAFAD", 
-      ), 
-      candidate == "Harris" ~ case_when(
-        margin == "Safe" ~ "#0000FF", 
-        margin == "Likely" ~ "#5C69FF", 
-        margin == "Leaning" ~ "#8597FF", 
-        margin == "Tilting" ~ "#ADC2FF", 
-      )
-    )
+    fill = purrr::map2_chr(candidate, margin, get_col), 
+    text_color = ifelse(margin %in% c("Leaning", "Tilting"), "black", "white"), 
+    margin = factor(margin, levels = c("Safe", "Likely", "Leaning", "Tilting"))
   )
 
 
@@ -98,6 +103,29 @@ df <- shapes |>
   left_join(data, by = join_by(id == state)) |>
   mutate(fill = ifelse(is.na(fill), "lightgray", fill))
 
+leg <- 
+  do.call(rbind, lapply(color_lookup, as.data.frame)) |>
+  tibble::rownames_to_column("candidate") |>
+  tidyr::pivot_longer(-candidate, names_to = "margin", values_to = "color") |>
+  mutate(
+    margin = factor(margin, levels = c("Safe", "Likely", "Leaning", "Tilting")), 
+    x = c(rep(215, 4), rep(222, 4)), 
+    y = rep(seq(20, 20 + (7 * 3), 7), 2)
+  )
+
+votes <- 
+  df |>
+  select(candidate, id, electoral_votes) |>
+  distinct() |>
+  group_by(candidate) |>
+  summarise(e_votes = sum(electoral_votes)) |>
+  ungroup() |>
+  mutate(
+    x = c(80, 122), 
+    y = 140
+  )
+
+
 
               
 ggplot() + 
@@ -107,23 +135,76 @@ ggplot() +
     show.legend = FALSE
   ) + 
   geom_text(
-    aes(center_x, center_y, label = id), 
-    color = "white", 
-    unique.data.frame(df[,c("center_x", "center_y", "id")]), 
-    size = 3, 
+    aes(center_x, center_y, label = id, color = text_color), 
+    unique.data.frame(df[,c("center_x", "center_y", "text_color", "id")]), 
+    size = 2.25, 
     vjust = -0.4, 
     fontface = "bold"
   ) + 
   geom_text(
-    aes(center_x, center_y, label = electoral_votes), 
-    color = "white", 
-    unique.data.frame(df[,c("center_x", "center_y", "electoral_votes")]), 
-    size = 3, 
+    aes(center_x, center_y, label = electoral_votes, color = text_color), 
+    unique.data.frame(df[,c("center_x", "center_y", "text_color", "electoral_votes")]), 
+    size = 2.75, 
     vjust = 1.2
   ) + 
+  geom_rect(
+    aes(xmin = x, xmax = x + 5, ymin = y, ymax = y + 5, fill = color), 
+    leg
+  ) +
+  geom_text(
+    aes(
+      x + 14, y, 
+      label = margin, 
+      size = ifelse(candidate == "Harris", 2, 0)
+    ), 
+    leg, 
+    fontface = "bold", 
+    hjust = 0, 
+    vjust = -0.4
+  ) + 
+  geom_rect(
+    aes(
+      xmin = x, xmax = x + 40, ymin = y, ymax = y + 10, 
+      fill = ifelse(candidate == "Trump", "#D31714", "#0043BF")
+    ), 
+    votes
+  ) +
+  geom_text(
+    aes(
+      x, y, label = candidate
+    ), 
+    votes, 
+    color = "white", 
+    vjust = -0.7, 
+    hjust = -0.1, 
+    size = 2.8, 
+    fontface = "bold"
+  ) + 
+  geom_text(
+    aes(
+      x + 40, y, label = e_votes
+    ), 
+    votes, 
+    color = "white", 
+    vjust = -0.7, 
+    hjust = 1.2, 
+    size = 2.8
+  ) + 
+  scale_color_identity() +
   scale_fill_identity() +
+  scale_size_identity() +
   coord_equal() + 
   theme_void()
 
+
+
+camcorder::gg_record(
+  'C:/Users/adamb/Pictures/Camcorder',
+  device = "jpeg", 
+  height = 9, 
+  width = 16, 
+  units = "cm", 
+  dpi = 300
+)
 
 
