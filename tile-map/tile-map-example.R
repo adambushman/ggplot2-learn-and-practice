@@ -61,7 +61,7 @@ data <- list(
   list(state = "VA", electoral_votes = 13, candidate = "Harris", margin = "Leaning"), 
   list(state = "NC", electoral_votes = 16, candidate = "Trump", margin = "Tilting"), 
   list(state = "GA", electoral_votes = 16, candidate = "Trump", margin = "Leaning"), 
-  list(state = "FL", electoral_votes = 29, candidate = "Trump", margin = "Likely"), 
+  list(state = "FL", electoral_votes = 30, candidate = "Trump", margin = "Likely"), 
   list(state = "PA", electoral_votes = 19, candidate = "Trump", margin = "Tilting")
 )
 
@@ -190,11 +190,17 @@ ggplot() +
     hjust = 1.2, 
     size = 2.8
   ) + 
+  labs(
+    title = "2024 Election Tile Map"
+  ) +
   scale_color_identity() +
   scale_fill_identity() +
   scale_size_identity() +
   coord_equal() + 
-  theme_void()
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
 
 
 
@@ -206,5 +212,3 @@ camcorder::gg_record(
   units = "cm", 
   dpi = 300
 )
-
-
