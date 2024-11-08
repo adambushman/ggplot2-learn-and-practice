@@ -80,17 +80,22 @@ results <- list(
 results_df <- data.frame(
   candidate = rep(names(results), sapply(results, length)),
   state = unlist(results, use.names = FALSE)
-)
+) |>
+  mutate(
+    flip = state %in% c("GA", "WI", "PA")
+  )
 
 
 color_lookup <- list(
   "Harris" = list (
+    "Flipped" = "#002B7A", 
     "Safe" = "#0043BF", 
     "Likely" = "#3D70CD", 
     "Leaning" = "#7A9CDA", 
     "Tilting" = "#B7C9E7"
   ), 
   "Trump" = list (
+    "Flipped" = "#8F0000", 
     "Safe" = "#D31714", 
     "Likely" = "#DC4F4C", 
     "Leaning" = "#E48684", 
@@ -124,7 +129,11 @@ shapes <- tilemakr::make_tiles(layout, "hexagon")
 
 df <- shapes |>
   left_join(full_data, by = join_by(id == state)) |>
-  mutate(fill = ifelse(is.na(fill), "lightgray", fill))
+  mutate(
+    fill = ifelse(is.na(fill), "lightgray", fill), 
+    pattern_fill = '#8F0000', 
+    pattern = ifelse(is.na(flip), "none", ifelse(flip, "stripe", "none"))
+  )
 
 leg <- 
   do.call(rbind, lapply(color_lookup, as.data.frame)) |>
@@ -154,11 +163,17 @@ votes <-
 
 
 ggplot() + 
-  geom_polygon(
-    aes(x, y, group = id, fill = fill), 
+  ggpattern::geom_polygon_pattern(
+    aes(
+      x, y, group = id, fill = fill, 
+      pattern = pattern, pattern_fill = pattern_fill
+    ), 
     df, 
+    pattern_density = .5, 
+    pattern_spacing = 0.015,
+    pattern_color = NA, 
     show.legend = FALSE
-  ) + 
+  ) +
   geom_text(
     aes(center_x, center_y, label = id, color = text_color), 
     unique.data.frame(df[,c("center_x", "center_y", "text_color", "id")]), 
@@ -227,6 +242,7 @@ ggplot() +
   labs(
     title = "2024 Election Tile Map"
   ) +
+  ggpattern::scale_pattern_fill_identity() +
   scale_color_identity() +
   scale_fill_identity() +
   scale_size_identity() +
