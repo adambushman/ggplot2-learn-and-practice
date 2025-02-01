@@ -16,7 +16,7 @@ data <- tibble(
   month = month.name
 ) %>%
   mutate(scans = c(
-    16, # January
+    20, # January
     # 8, # February
     rep(as.numeric(NA), nrow(.) - 1)
   )) %>%
@@ -45,7 +45,8 @@ tracker_plot <-
     aes(x, y, color = my_col)
   ) +
   geom_point(
-    shape = 15
+    shape = 15, 
+    size = 2.25
   ) +
   scale_color_identity() + 
   coord_flip() +
@@ -61,6 +62,7 @@ tracker_plot <-
   )
 
 pace = nrow(data) - ceiling(as.integer(today() - ymd("2025-01-01")) * 200 / 365)
+pace_wording = ifelse(pace > 0, "ahead of", "behind")
 
 text_data <- tibble(
   x = 1:3, 
@@ -68,12 +70,12 @@ text_data <- tibble(
   text = c(
     nrow(data[data$month == last_month,]),
     paste(nrow(data), "/ 200", collapse = " "), 
-    paste(c(ifelse(pace > 0, "+", ""), pace), collapse = "")
+    pace
   ), 
   desc = c(
-    paste(c("Scans in", last_month), collapse = ""), 
+    paste(c("Scans in ", last_month), collapse = ""), 
     "Total scans to date", 
-    "Compared to pace"
+    paste(c("Scans", pace_wording, "pace"), collapse = " ")
   ), 
   my_col = c("#f0f0f0", "#e21c37", "#495057")
 )
@@ -111,7 +113,8 @@ kpi_plot <-
     axis.line = element_blank()
   )
 
-description_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+description_text = "This goal is about building a sustainable habit of exercise and strength training. In years past, I've achieved consistency over a series of months. The goal of 200 gym visits in 2025 is meant to keep me consistent for an entire year. Let's get it!"
 
 
 desc_plot <- 
@@ -123,7 +126,7 @@ desc_plot <-
       text = scales::label_wrap(70)(description_text)
     ), 
     color = "#f0f0f0", 
-    size = 2, 
+    size = 2.25, 
     hjust = 0
   ) +
   xlim(1,3) + 
@@ -172,7 +175,7 @@ patchwork +
 
 
 camcorder::gg_record(
-  dir = "G:/Camcorder", 
+  dir = "~/Pictures/Camcorder", 
   device = "jpeg", 
   width = 16, 
   height = 8, 
