@@ -9,17 +9,21 @@ skeleton <- expand.grid(
 )
 
 
-last_month = "January"
+last_month = "February"
+days_offset = 5 # 0 if 1st of the month
+logged_scans = c(
+  20 # January
+  ,14 # February
+  #,8 # March
+)
 
 
 data <- tibble(
   month = month.name
 ) %>%
-  mutate(scans = c(
-    20, # January
-    # 8, # February
-    rep(as.numeric(NA), nrow(.) - 1)
-  )) %>%
+  mutate(
+    scans = c(logged_scans, rep(as.numeric(NA), nrow(.) - length(logged_scans)))
+  ) %>%
   filter(!is.na(scans)) %>%
   uncount(scans)
 
@@ -61,7 +65,7 @@ tracker_plot <-
     axis.line = element_blank()
   )
 
-pace = nrow(data) - ceiling(as.integer(today() - ymd("2025-01-01")) * 200 / 365)
+pace = nrow(data) - ceiling((as.integer(today() - ymd("2025-01-01")) - days_offset) * 200 / 365)
 pace_wording = ifelse(pace > 0, "ahead of", "behind")
 
 text_data <- tibble(
@@ -147,6 +151,15 @@ desc_plot <-
 
 patchwork <- (kpi_plot | desc_plot) / tracker_plot
 
+camcorder::gg_record(
+  dir = "~/Pictures/Camcorder", 
+  device = "jpeg", 
+  width = 16, 
+  height = 8, 
+  units = "cm",
+  dpi = 300
+)
+
 
 patchwork +
   theme(
@@ -172,16 +185,5 @@ patchwork +
     )
   )
   
-
-
-camcorder::gg_record(
-  dir = "~/Pictures/Camcorder", 
-  device = "jpeg", 
-  width = 16, 
-  height = 8, 
-  units = "cm",
-  dpi = 300
-)
-
 camcorder::gg_stop_recording()
 
